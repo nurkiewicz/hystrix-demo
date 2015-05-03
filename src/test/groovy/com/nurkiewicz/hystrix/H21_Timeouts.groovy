@@ -23,9 +23,9 @@ class H21_Timeouts extends Specification {
 
 }
 
-class TuimeoutDownloadCommand extends HystrixCommand<String> {
+class TimeoutDownloadCommand extends HystrixCommand<String> {
 
-    protected TuimeoutDownloadCommand() {
+    protected TimeoutDownloadCommand() {
         super(HystrixCommandGroupKey.Factory.asKey("Download"), 5_000)
     }
 
