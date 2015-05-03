@@ -6,6 +6,7 @@ import com.netflix.hystrix.HystrixCommandKey
 import com.netflix.hystrix.HystrixCommandProperties
 import org.apache.commons.io.IOUtils
 import spock.lang.Specification
+import static com.netflix.hystrix.HystrixCommand.Setter
 
 import java.nio.charset.StandardCharsets
 
