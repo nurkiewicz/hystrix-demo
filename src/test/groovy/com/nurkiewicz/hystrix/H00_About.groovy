@@ -8,11 +8,13 @@ package com.nurkiewicz.hystrix
  *
  * @tnurkiewicz
  *
+ * I work for @4financeit
+ *
  * www.nurkiewicz.com
  *
  * wwww.github.com/nurkiewicz/hystrix-demo
  *
  */
-class H00_AboutDemo {
+class H00_About {
 
 }

@@ -14,27 +14,27 @@ import java.nio.charset.StandardCharsets
  */
 class H20_Basic_Hystrix extends Specification {
 
-    def 'Minimal Hystric API'() {
-        given:
-            CircuitBreakingDownloadCommand command = new CircuitBreakingDownloadCommand()
+	def 'Minimal Hystric API'() {
+		given:
+			HystrixCommand<String> command = new CustomDownloadCommand(url)
 
-        expect:
-            String result = command.execute()
+		expect:
+			String result = command.execute()
 
-    }
+	}
 
 }
 
 class BasicDownloadCommand extends HystrixCommand<String> {
 
-    protected BasicDownloadCommand() {
-        super(HystrixCommandGroupKey.Factory.asKey("Download"))
-    }
+	protected BasicDownloadCommand() {
+		super(HystrixCommandGroupKey.Factory.asKey("Download"))
+	}
 
-    @Override
-    protected String run() throws Exception {
-        URL url = "http://www.google.com".toURL()
-        InputStream input = url.openStream()
-        IOUtils.toString(input, StandardCharsets.UTF_8)
-    }
+	@Override
+	protected String run() throws Exception {
+		URL url = "http://www.google.com".toURL()
+		InputStream input = url.openStream()
+		return IOUtils.toString(input, StandardCharsets.UTF_8)
+	}
 }

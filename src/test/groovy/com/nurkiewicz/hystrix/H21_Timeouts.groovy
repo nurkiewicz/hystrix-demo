@@ -12,27 +12,27 @@ import java.nio.charset.StandardCharsets
  */
 class H21_Timeouts extends Specification {
 
-    def 'Minimal Hystric API'() {
-        given:
-            CircuitBreakingDownloadCommand command = new CircuitBreakingDownloadCommand()
+	def 'Minimal Hystric API'() {
+		given:
+			HystrixCommand<String> command = new TimeoutDownloadCommand()
 
-        expect:
-            String result = command.execute()
+		expect:
+			String result = command.execute()
 
-    }
+	}
 
 }
 
 class TimeoutDownloadCommand extends HystrixCommand<String> {
 
-    protected TimeoutDownloadCommand() {
-        super(HystrixCommandGroupKey.Factory.asKey("Download"), 5_000)
-    }
+	protected TimeoutDownloadCommand() {
+		super(HystrixCommandGroupKey.Factory.asKey("Download"), 5_000)
+	}
 
-    @Override
-    protected String run() throws Exception {
-        URL url = "http://www.google.com".toURL()
-        InputStream input = url.openStream()
-        IOUtils.toString(input, StandardCharsets.UTF_8)
-    }
+	@Override
+	protected String run() throws Exception {
+		URL url = "http://www.google.com".toURL()
+		InputStream input = url.openStream()
+		IOUtils.toString(input, StandardCharsets.UTF_8)
+	}
 }

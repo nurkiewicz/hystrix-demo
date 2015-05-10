@@ -16,13 +16,13 @@ import java.nio.charset.StandardCharsets
  */
 class H10_Introduction extends Specification {
 
-    def 'insecure code'() {
-        given:
-            URL url = "http://www.google.com".toURL()
-            InputStream input = url.openStream()
+	def 'insecure code'() {
+		given:
+			URL url = "http://www.google.com".toURL()
+			InputStream input = url.openStream()
 
-        expect:
-            IOUtils.toString(input, StandardCharsets.UTF_8)
-    }
+		expect:
+			IOUtils.toString(input, StandardCharsets.UTF_8)
+	}
 
 }
