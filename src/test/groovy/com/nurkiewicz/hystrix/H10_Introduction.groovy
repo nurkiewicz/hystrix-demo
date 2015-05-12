@@ -6,7 +6,7 @@ import spock.lang.Specification
 import java.nio.charset.StandardCharsets
 
 /**
- * Insecure code:
+ * Unsafe code:
  * - broken URL
  * - slow DNS
  * - broken SSL certificate
@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets
  */
 class H10_Introduction extends Specification {
 
-	def 'insecure code'() {
+	def 'unsafe code'() {
 		given:
 			URL url = "http://www.google.com".toURL()
 			InputStream input = url.openStream()

@@ -18,19 +18,19 @@ class H23_HystrixGuard {
 	@Autowired
 	private ExternalService externalService
 
-	@RequestMapping("/secure")
-	String secure(Parameters params) {
+	@RequestMapping("/safe")
+	String safe(Parameters params) {
 		HystrixCommand.Setter key = HystrixCommand.Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("External"))
 		return new HystrixCommand<String>(key) {
 			@Override
 			protected String run() throws Exception {
-				insecure(params)
+				unsafe(params)
 			}
 		}.execute()
 	}
 
-	@RequestMapping("/insecure")
-	String insecure(Parameters params) {
+	@RequestMapping("/unsafe")
+	String unsafe(Parameters params) {
 		externalService.call(params)
 		return "OK"
 	}
