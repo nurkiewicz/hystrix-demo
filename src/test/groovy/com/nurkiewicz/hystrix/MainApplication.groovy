@@ -72,21 +72,3 @@ class MainApplication {
 
 }
 
-@Configuration
-@Profile("graphite")
-class Dashboard {
-
-	@Bean
-	public GraphiteReporter graphiteReporter(MetricRegistry metricRegistry) {
-		final GraphiteReporter reporter = GraphiteReporter
-				.forRegistry(metricRegistry)
-				.build(graphite());
-		reporter.start(1, TimeUnit.SECONDS);
-		return reporter;
-	}
-
-	@Bean
-	GraphiteSender graphite() {
-		return new Graphite(new InetSocketAddress("localhost", 2003));
-	}
-}
