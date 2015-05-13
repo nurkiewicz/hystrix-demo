@@ -9,12 +9,12 @@ class H80_Observables extends Specification {
 
 	def 'asynchronous command'() {
 		given:
-			HystrixCommand<String> command = new CustomDownloadCommand(url)
+			HystrixCommand<String> command = new CustomDownloadCommand("http://www.google.com".toURL())
 		when:
 			Observable<String> obs = command.observe()
 		then:
 			Observable<Integer> result = obs.map { x -> x.length() }
-			result.toBlocking().first() == 42
+			result.toBlocking().single() == 42
 	}
 
 	def 'compose asynchronous commands'() {

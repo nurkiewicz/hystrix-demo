@@ -18,9 +18,9 @@ import static com.nurkiewicz.hystrix.Examples.OTHER_TICKER
 
 /**
  * Stock price example
- * @see com.nurkiewicz.hystrix.examples.StockPriceCommand first
+ * @see com.nurkiewicz.hystrix.stock.StockPriceCommand first
  */
-class H52_Request_batching extends Specification {
+class H61_Request_batching extends Specification {
 	def setup() {
 		HystrixRequestContext.initializeContext()
 	}

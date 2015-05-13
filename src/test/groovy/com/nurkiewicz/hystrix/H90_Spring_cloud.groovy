@@ -11,6 +11,6 @@ import spock.lang.Specification
  * - Turbine
  * @see <code>@EnableHystrixDashboard</code>
  */
-class H70_Spring_cloud extends Specification {
+class H90_Spring_cloud extends Specification {
 
 }

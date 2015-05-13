@@ -2,6 +2,7 @@ package com.nurkiewicz.hystrix
 
 import com.netflix.hystrix.HystrixCommand
 import com.netflix.hystrix.HystrixCommandGroupKey
+import com.netflix.hystrix.HystrixCommandKey
 import com.nurkiewicz.hystrix.examples.ExternalService
 import com.nurkiewicz.hystrix.examples.Parameters
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,7 +21,9 @@ class H23_HystrixGuard {
 
 	@RequestMapping("/safe")
 	String safe(Parameters params) {
-		HystrixCommand.Setter key = HystrixCommand.Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("External"))
+		HystrixCommand.Setter key = HystrixCommand.Setter.withGroupKey(
+				HystrixCommandGroupKey.Factory.asKey("External"))
+				.andCommandKey(HystrixCommandKey.Factory.asKey("call"))
 		return new HystrixCommand<String>(key) {
 			@Override
 			protected String run() throws Exception {

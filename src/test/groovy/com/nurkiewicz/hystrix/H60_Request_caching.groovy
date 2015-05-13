@@ -6,6 +6,7 @@ import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext
 import rx.Observable
 import spock.lang.Specification
 
+import java.util.concurrent.Future
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.LongAdder
@@ -13,7 +14,7 @@ import java.util.concurrent.atomic.LongAdder
 /**
  * Two commands aren't executed synchronously
  */
-class H50_Request_caching extends Specification {
+class H60_Request_caching extends Specification {
 
 	def setup() {
 		HystrixRequestContext.initializeContext()
@@ -28,11 +29,11 @@ class H50_Request_caching extends Specification {
 			CachedCommand one = new CachedCommand()
 			CachedCommand two = new CachedCommand()
 		when:
-			Observable<String> oneObs = one.observe()
-			Observable<String> twoObs = two.observe()
+			Future<String> oneObs = one.queue()
+			Future<String> twoObs = two.queue()
 		and:
-			oneObs.toBlocking().single()
-			twoObs.toBlocking().single()
+			oneObs.get()
+			twoObs.get()
 		then:
 			CachedCommand.counter.intValue() == 1
 	}

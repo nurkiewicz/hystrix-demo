@@ -9,6 +9,6 @@ import spock.lang.Specification
  * $ docker run -p 8081:80 -p 2003:2003 --name grafana kamon/grafana_graphite
  * $ docker start -a grafana
  */
-class H63_Graphite extends Specification {
+class H70_Graphite extends Specification {
 
 }

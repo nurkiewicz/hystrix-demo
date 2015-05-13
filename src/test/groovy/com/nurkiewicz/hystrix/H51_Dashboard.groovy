@@ -7,6 +7,6 @@ import spock.lang.Specification
  * $ cd hystrix-dashboard
  * $ ../gradlew jettyRun
  */
-class H61_Dashboard extends Specification {
+class H51_Dashboard extends Specification {
 
 }

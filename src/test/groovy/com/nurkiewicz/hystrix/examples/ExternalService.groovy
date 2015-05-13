@@ -45,8 +45,8 @@ class Parameters {
 	private static final Random random = new Random()
 
 	long duration
-	double failureProbability
 	double standardDev
+	double failureProbability
 
 	double randomDuration() {
 		return this.duration + random.nextGaussian() * this.standardDev
