@@ -13,14 +13,15 @@ class CustomDownloadCommand extends HystrixCommand<String> {
 	private final URL url;
 
 	protected CustomDownloadCommand(URL url) {
-		super(HystrixCommandGroupKey.Factory.asKey("Download"));
+		super(HystrixCommandGroupKey.Factory.asKey("Download"), 10_000000);
 		this.url = url;
 	}
 
 	@Override
 	protected String run() throws Exception {
 		try (InputStream input = url.openStream()) {
-			return IOUtils.toString(input, StandardCharsets.UTF_8);
+			final String html = IOUtils.toString(input, StandardCharsets.UTF_8);
+			return html;
 		}
 	}
 }

@@ -4,6 +4,7 @@ import com.netflix.hystrix.HystrixCommand
 import com.netflix.hystrix.HystrixCommandGroupKey
 import com.netflix.hystrix.HystrixCommandKey
 import com.netflix.hystrix.HystrixCommandProperties
+import com.netflix.hystrix.HystrixThreadPoolProperties
 import groovy.util.logging.Slf4j
 import org.apache.commons.io.IOUtils
 import spock.lang.Specification
@@ -43,6 +44,12 @@ class CircuitBreakingDownloadCommand extends HystrixCommand<String> {
 								.withCircuitBreakerErrorThresholdPercentage(50)
 								.withCircuitBreakerRequestVolumeThreshold(20)
 								.withCircuitBreakerSleepWindowInMilliseconds(5_000))
+						.andThreadPoolPropertiesDefaults(
+						HystrixThreadPoolProperties.Setter()
+								.withMetricsRollingStatisticalWindowInMilliseconds(10_000)
+
+				)
+
 		)
 	}
 

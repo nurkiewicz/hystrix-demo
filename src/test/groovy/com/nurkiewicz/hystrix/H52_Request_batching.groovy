@@ -2,34 +2,23 @@ package com.nurkiewicz.hystrix
 
 import com.google.common.collect.ImmutableMap
 import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext
-import com.nurkiewicz.hystrix.examples.StockPrice
-import com.nurkiewicz.hystrix.examples.StockPriceGateway
-import com.nurkiewicz.hystrix.examples.StockTickerPriceCollapsedCommand
-import com.nurkiewicz.hystrix.examples.Ticker
-import groovy.transform.Canonical
-import groovy.util.logging.Slf4j
+import com.nurkiewicz.hystrix.stock.StockPrice
+import com.nurkiewicz.hystrix.stock.StockPriceGateway
+import com.nurkiewicz.hystrix.stock.StockTickerPriceCollapsedCommand
+import com.nurkiewicz.hystrix.stock.Ticker
 import spock.lang.Specification
 
 import java.time.Instant
 import java.util.concurrent.Future
-import java.util.concurrent.TimeUnit
 
-import static com.nurkiewicz.hystrix.Examples.getANY_STOCK_PRICE
-import static com.nurkiewicz.hystrix.Examples.getANY_STOCK_PRICE
-import static com.nurkiewicz.hystrix.Examples.getANY_TICKER
-import static com.nurkiewicz.hystrix.Examples.getANY_TICKER
-import static com.nurkiewicz.hystrix.Examples.getANY_TICKER
-import static com.nurkiewicz.hystrix.Examples.getANY_TICKER
-import static com.nurkiewicz.hystrix.Examples.getANY_TICKER
-import static com.nurkiewicz.hystrix.Examples.getANY_TICKER
-import static com.nurkiewicz.hystrix.Examples.getANY_TICKER
-import static com.nurkiewicz.hystrix.Examples.getOTHER_STOCK_PRICE
-import static com.nurkiewicz.hystrix.Examples.getOTHER_TICKER
-import static com.nurkiewicz.hystrix.Examples.getOTHER_TICKER
-import static com.nurkiewicz.hystrix.Examples.getOTHER_TICKER
+import static com.nurkiewicz.hystrix.Examples.ANY_STOCK_PRICE
+import static com.nurkiewicz.hystrix.Examples.ANY_TICKER
+import static com.nurkiewicz.hystrix.Examples.OTHER_STOCK_PRICE
+import static com.nurkiewicz.hystrix.Examples.OTHER_TICKER
 
 /**
  * Stock price example
+ * @see com.nurkiewicz.hystrix.examples.StockPriceCommand first
  */
 class H52_Request_batching extends Specification {
 	def setup() {

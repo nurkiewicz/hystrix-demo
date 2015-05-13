@@ -7,9 +7,6 @@ import spock.lang.Specification
 
 import java.nio.charset.StandardCharsets
 
-/**
- * Configuring thread pool size
- */
 class H21_Timeouts extends Specification {
 
 	def 'Minimal Hystric API'() {

@@ -27,12 +27,13 @@ class H80_Observables extends Specification {
 			Observable<String> bingObs = bing.observe()
 			Observable<String> nurkiewiczObs = nurkiewicz.observe()
 		when:
-			Observable<String> allResults = Observable.concat(googleObs, bingObs, nurkiewiczObs)
+			Observable<String> allResults = Observable.merge(googleObs, bingObs, nurkiewiczObs)
 		then:
 			Observable<List<String>> resultsList = allResults
 					.filter{html -> html.contains('2015')}
 					.toList()
-			resultsList.forEach{println(it)}
+			println(googleObs.toBlocking().single())
+			resultsList.toBlocking().forEach{println(it)}
 	}
 
 }

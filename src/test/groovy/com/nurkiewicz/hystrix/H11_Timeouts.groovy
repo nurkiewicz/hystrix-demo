@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit
  * - Limit max duration
  * - You always pay the price of slow query / fail fast
  * - Circuit breaking
+ * - Missing metrics: avg time, queue length
  */
 class H11_Timeouts extends Specification {
 

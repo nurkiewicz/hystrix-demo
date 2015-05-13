@@ -16,7 +16,7 @@ class H20_Basic_Hystrix extends Specification {
 
 	def 'Minimal Hystric API'() {
 		given:
-			HystrixCommand<String> command = new CustomDownloadCommand(url)
+			HystrixCommand<String> command = new BasicDownloadCommand()
 
 		expect:
 			String result = command.execute()
