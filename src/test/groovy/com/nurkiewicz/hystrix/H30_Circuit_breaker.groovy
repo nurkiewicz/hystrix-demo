@@ -53,8 +53,8 @@ class CircuitBreakingDownloadCommand extends HystrixCommand<String> {
 
 	@Override
 	protected String run() throws Exception {
-		log.debug("Downloading Google...")
-		URL url = "http://www.google.com/404".toURL()
+		log.debug("Downloading...")
+		URL url = "http://www.example.com/404".toURL()
 		InputStream input = url.openStream()
 		return IOUtils.toString(input, StandardCharsets.UTF_8)
 	}

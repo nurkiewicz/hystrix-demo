@@ -18,7 +18,7 @@ class H10_Introduction extends Specification {
 
 	def 'unsafe code'() {
 		given:
-			URL url = "http://www.google.com".toURL()
+			URL url = "http://www.example.com".toURL()
 			InputStream input = url.openStream()
 
 		expect:

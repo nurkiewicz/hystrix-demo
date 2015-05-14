@@ -28,7 +28,7 @@ class TimeoutDownloadCommand extends HystrixCommand<String> {
 
 	@Override
 	protected String run() throws Exception {
-		URL url = "http://www.google.com".toURL()
+		URL url = "http://www.example.com".toURL()
 		InputStream input = url.openStream()
 		IOUtils.toString(input, StandardCharsets.UTF_8)
 	}

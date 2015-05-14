@@ -36,7 +36,7 @@ class FallbackDownloadCommand extends HystrixCommand<String> {
 
 	@Override
 	protected String run() throws Exception {
-		URL url = "http://www.google.com/404".toURL()
+		URL url = "http://www.example.com/404".toURL()
 		InputStream input = url.openStream()
 		IOUtils.toString(input, StandardCharsets.UTF_8)
 	}
