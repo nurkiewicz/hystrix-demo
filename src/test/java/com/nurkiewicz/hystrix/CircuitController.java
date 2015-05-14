@@ -4,8 +4,8 @@ import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixCommandProperties;
-import com.nurkiewicz.hystrix.examples.ExternalService;
-import com.nurkiewicz.hystrix.examples.Parameters;
+import com.nurkiewicz.hystrix.ExternalService;
+import com.nurkiewicz.hystrix.QueryParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +19,7 @@ class CircuitController {
 	ExternalService externalService;
 
 	@RequestMapping("/circuit")
-	String circuit(Parameters params) {
+	String circuit(QueryParams params) {
 		HystrixCommand.Setter key = HystrixCommand.Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("Download"))
 				.andCommandKey(HystrixCommandKey.Factory.asKey("SomeCommand"))
 				.andCommandPropertiesDefaults(

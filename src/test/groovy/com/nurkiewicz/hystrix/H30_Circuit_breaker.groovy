@@ -38,18 +38,16 @@ class CircuitBreakingDownloadCommand extends HystrixCommand<String> {
 		super(
 				Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("Download"))
 						.andCommandKey(HystrixCommandKey.Factory.asKey("SomeCommand"))
+						.andThreadPoolPropertiesDefaults(
+						HystrixThreadPoolProperties.Setter()
+								.withMetricsRollingStatisticalWindowInMilliseconds(10_000))
 						.andCommandPropertiesDefaults(
 						HystrixCommandProperties.Setter()
 								.withCircuitBreakerEnabled(true)
 								.withCircuitBreakerErrorThresholdPercentage(50)
 								.withCircuitBreakerRequestVolumeThreshold(20)
-								.withCircuitBreakerSleepWindowInMilliseconds(5_000))
-						.andThreadPoolPropertiesDefaults(
-						HystrixThreadPoolProperties.Setter()
-								.withMetricsRollingStatisticalWindowInMilliseconds(10_000)
-
+								.withCircuitBreakerSleepWindowInMilliseconds(5_000)
 				)
-
 		)
 	}
 

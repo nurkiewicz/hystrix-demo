@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets
 
 class H21_Timeouts extends Specification {
 
-	def 'Minimal Hystric API'() {
+	def 'Minimal Hystrix API'() {
 		given:
 			HystrixCommand<String> command = new TimeoutDownloadCommand()
 

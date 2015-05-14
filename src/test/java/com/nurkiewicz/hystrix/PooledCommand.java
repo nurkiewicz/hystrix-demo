@@ -14,7 +14,6 @@ class PooledCommand extends HystrixCommand<String> {
                                 .withCoreSize(4)
                                 .withMaxQueueSize(20)
                                 .withQueueSizeRejectionThreshold(15)
-                                .withMetricsRollingStatisticalWindowInMilliseconds(15_000)
                 ));
     }
 

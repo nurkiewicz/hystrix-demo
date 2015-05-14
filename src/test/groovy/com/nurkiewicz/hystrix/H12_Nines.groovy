@@ -12,7 +12,7 @@ import static org.apache.commons.lang.time.DateUtils.MILLIS_PER_DAY
  * Downtime grows exponentially with independent services
  */
 @Unroll
-class H13_Nines extends Specification {
+class H12_Nines extends Specification {
 
 	def 'Uptime of 99.99% when #serviceCount services means #downtimeHms of downtime daily'() {
 		given:
@@ -22,7 +22,6 @@ class H13_Nines extends Specification {
 		expect:
 			systemUptime * 100 <= expectedMaxUptime
 			secondsDowntimeDaily(systemUptime) <= expectedDowntimeSecondsDaily
-
 
 		where:
 			serviceCount | expectedMaxUptime | expectedDowntimeSecondsDaily

@@ -3,8 +3,8 @@ package com.nurkiewicz.hystrix;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixThreadPoolProperties;
-import com.nurkiewicz.hystrix.examples.ExternalService;
-import com.nurkiewicz.hystrix.examples.Parameters;
+import com.nurkiewicz.hystrix.ExternalService;
+import com.nurkiewicz.hystrix.QueryParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +18,7 @@ class ThrottlingController {
 	ExternalService externalService;
 
 	@RequestMapping("/throttling")
-	String throttle(Parameters params) {
+	String throttle(QueryParams params) {
 		final HystrixCommand.Setter key = HystrixCommand.Setter
 				.withGroupKey(HystrixCommandGroupKey.Factory.asKey("Download"))
 				.andThreadPoolPropertiesDefaults(
