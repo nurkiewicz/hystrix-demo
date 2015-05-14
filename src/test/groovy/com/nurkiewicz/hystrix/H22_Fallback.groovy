@@ -25,7 +25,6 @@ class H22_Fallback extends Specification {
 
 }
 
-
 class FallbackDownloadCommand extends HystrixCommand<String> {
 
 	public static final String FALLBACK = "Temporarily unavailable"

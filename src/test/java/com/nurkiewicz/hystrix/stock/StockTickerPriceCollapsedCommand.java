@@ -22,7 +22,7 @@ public class StockTickerPriceCollapsedCommand extends HystrixCollapser<Map<Ticke
 						.andCollapserPropertiesDefaults(
 								HystrixCollapserProperties.Setter()
 										.withTimerDelayInMilliseconds(100)
-										.withMaxRequestsInBatch(50)
+										.withMaxRequestsInBatch(500)
 						)
 						.andScope(Scope.GLOBAL));
 		this.gateway = gateway;

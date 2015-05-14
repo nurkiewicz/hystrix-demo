@@ -35,11 +35,11 @@ class SimulatedStockPriceGateway implements StockPriceGateway {
 	public StockPrice load(Ticker ticker) {
 		log.debug("Loading {}", ticker);
 		final Set<Ticker> oneTicker = Collections.singleton(ticker);
-		return loadAll(oneTicker).get(ticker);
+		return loadMany(oneTicker).get(ticker);
 	}
 
 	@Override
-	public Map<Ticker, StockPrice> loadAll(Collection<Ticker> tickers) {
+	public Map<Ticker, StockPrice> loadMany(Collection<Ticker> tickers) {
 		final HashSet<Ticker> uniqueTickers = new HashSet<>(tickers);
 		log.debug("Loading batch of ({}, unique: {}): {}", tickers.size(), uniqueTickers.size(), uniqueTickers);
 		requests.inc();

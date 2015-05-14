@@ -15,12 +15,15 @@ class H23_HystrixGuard {
 	@Autowired
 	private ExternalService externalService
 
+	@RequestMapping("/unsafe")
+	String unsafe(QueryParams params) {
+		externalService.call(params)
+		return "OK"
+	}
+
 	@RequestMapping("/safe")
 	String safe(QueryParams params) {
-		HystrixCommand.Setter key = HystrixCommand.Setter.withGroupKey(
-				HystrixCommandGroupKey.Factory.asKey("External"))
-				.andCommandKey(HystrixCommandKey.Factory.asKey("/safe"))
-		return new HystrixCommand<String>(key) {
+		return new HystrixCommand<String>(setter()) {
 			@Override
 			protected String run() throws Exception {
 				unsafe(params)
@@ -28,12 +31,11 @@ class H23_HystrixGuard {
 		}.execute()
 	}
 
-	@RequestMapping("/unsafe")
-	String unsafe(QueryParams params) {
-		externalService.call(params)
-		return "OK"
+	private HystrixCommand.Setter setter() {
+		HystrixCommand.Setter.withGroupKey(
+				HystrixCommandGroupKey.Factory.asKey("External"))
+				.andCommandKey(HystrixCommandKey.Factory.asKey("/safe"))
 	}
-
 
 }
 

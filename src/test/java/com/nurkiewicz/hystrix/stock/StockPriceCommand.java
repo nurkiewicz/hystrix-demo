@@ -10,7 +10,8 @@ public class StockPriceCommand extends HystrixCommand<StockPrice> {
     private final Ticker stock;
 
     public StockPriceCommand(StockPriceGateway gateway, Ticker stock) {
-        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("Stock")).andCommandKey(HystrixCommandKey.Factory.asKey("Price")));
+        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("Stock"))
+                .andCommandKey(HystrixCommandKey.Factory.asKey("load")));
         this.gateway = gateway;
         this.stock = stock;
     }

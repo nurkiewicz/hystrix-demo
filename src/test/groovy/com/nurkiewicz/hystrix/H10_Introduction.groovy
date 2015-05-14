@@ -21,8 +21,11 @@ class H10_Introduction extends Specification {
 			URL url = "http://www.example.com".toURL()
 			InputStream input = url.openStream()
 
-		expect:
-			IOUtils.toString(input, StandardCharsets.UTF_8)
+		when:
+			String string = IOUtils.toString(input, StandardCharsets.UTF_8)
+
+		then:
+			!string.empty
 	}
 
 }

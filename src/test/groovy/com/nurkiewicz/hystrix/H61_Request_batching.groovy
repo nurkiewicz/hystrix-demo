@@ -48,7 +48,7 @@ class H61_Request_batching extends Specification {
 
 		then:
 			0 * gateway.load(_)
-			1 * gateway.loadAll(tickers) >> ImmutableMap.of(ANY_TICKER, ANY_STOCK_PRICE)
+			1 * gateway.loadMany(tickers) >> ImmutableMap.of(ANY_TICKER, ANY_STOCK_PRICE)
 	}
 
 	def 'should collapse two commands executed concurrently for the different stock tickers'() {
@@ -69,7 +69,7 @@ class H61_Request_batching extends Specification {
 			futureTwo.get()
 
 		then:
-			1 * gateway.loadAll(tickers) >> ImmutableMap.of(
+			1 * gateway.loadMany(tickers) >> ImmutableMap.of(
 					ANY_TICKER, ANY_STOCK_PRICE,
 					OTHER_TICKER, OTHER_STOCK_PRICE)
 	}

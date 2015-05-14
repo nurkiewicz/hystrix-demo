@@ -9,6 +9,6 @@ public interface StockPriceGateway {
 
 	StockPrice load(Ticker ticker);
 
-	Map<Ticker, StockPrice> loadAll(Collection<Ticker> tickers);
+	Map<Ticker, StockPrice> loadMany(Collection<Ticker> tickers);
 
 }
