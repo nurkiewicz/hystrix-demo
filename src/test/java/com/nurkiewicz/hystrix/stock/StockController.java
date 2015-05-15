@@ -1,7 +1,6 @@
 package com.nurkiewicz.hystrix.stock;
 
 import com.netflix.hystrix.HystrixExecutable;
-import com.nurkiewicz.hystrix.examples.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
