@@ -1,14 +1,15 @@
 package com.nurkiewicz.hystrix.stock;
 
-import com.netflix.hystrix.*;
+import com.netflix.hystrix.HystrixCollapser;
+import com.netflix.hystrix.HystrixCollapserKey;
+import com.netflix.hystrix.HystrixCollapserProperties;
+import com.netflix.hystrix.HystrixCommand;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
 
 public class StockTickerPriceCollapsedCommand extends HystrixCollapser<Map<Ticker, StockPrice>, StockPrice, Ticker> {
 

@@ -1,7 +1,6 @@
 package com.nurkiewicz.hystrix.stock;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 
 import java.math.BigDecimal;
 import java.time.Instant;

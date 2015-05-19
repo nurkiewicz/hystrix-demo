@@ -1,7 +1,6 @@
 package com.nurkiewicz.hystrix;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 
 import java.util.Random;
 

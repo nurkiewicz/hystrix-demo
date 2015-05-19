@@ -1,22 +1,5 @@
 package com.nurkiewicz.hystrix.stock;
 
-import com.google.common.base.MoreObjects;
-import groovy.util.logging.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
-import java.time.Instant;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
-
-import static java.util.stream.Collectors.toMap;
-
 public class Ticker {
 	private final String symbol;
 
