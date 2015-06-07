@@ -8,8 +8,8 @@
 
 ## Tomasz Nurkiewicz
 
-Twitter: [@tnurkiewicz](https://twitter.com/tnurkiewicz) | [@4financeit](https://twitter.com/4financeit)
+Twitter: [@tnurkiewicz](https://twitter.com/tnurkiewicz), works for: [@4financeit](https://twitter.com/4financeit)
 
-Home: [www.nurkiewicz.com](http://www.nurkiewicz.com)
+E-mail: my last name `@gmail.com`
 
 Source code: [www.github.com/nurkiewicz/hystrix-demo](http://www.github.com/nurkiewicz/hystrix-demo)
