@@ -4,11 +4,7 @@ import org.apache.commons.io.IOUtils
 import spock.lang.Specification
 
 import java.nio.charset.StandardCharsets
-import java.util.concurrent.Callable
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
-import java.util.concurrent.Future
-import java.util.concurrent.TimeUnit
+import java.util.concurrent.*
 
 /**
  * Timeouts for unsafe code
@@ -30,14 +26,16 @@ class H11_Timeouts extends Specification {
 			pool.shutdownNow()
 	}
 
-}
+	static class DownloadTask implements Callable<String> {
 
-class DownloadTask implements Callable<String> {
-
-	@Override
-	String call() throws Exception {
-		URL url = "http://www.example.com".toURL()
-		InputStream input = url.openStream()
-		IOUtils.toString(input, StandardCharsets.UTF_8)
+		@Override
+		String call() throws Exception {
+			URL url = "http://www.example.com".toURL()
+			InputStream input = url.openStream()
+			IOUtils.toString(input, StandardCharsets.UTF_8)
+		}
 	}
+
+
 }
+

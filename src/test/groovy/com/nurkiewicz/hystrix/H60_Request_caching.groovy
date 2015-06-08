@@ -3,12 +3,10 @@ package com.nurkiewicz.hystrix
 import com.netflix.hystrix.HystrixCommand
 import com.netflix.hystrix.HystrixCommandGroupKey
 import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext
-import rx.Observable
 import spock.lang.Specification
 
 import java.util.concurrent.Future
 import java.util.concurrent.TimeUnit
-import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.LongAdder
 
 /**
@@ -38,25 +36,26 @@ class H60_Request_caching extends Specification {
 			CachedCommand.counter.intValue() == 1
 	}
 
+	class CachedCommand extends HystrixCommand<String> {
+
+		public static final LongAdder counter = new LongAdder()
+
+		protected CachedCommand() {
+			super(HystrixCommandGroupKey.Factory.asKey("Cached"))
+		}
+
+		@Override
+		protected String run() throws Exception {
+			counter.increment()
+			TimeUnit.MILLISECONDS.sleep(500)
+			return null
+		}
+
+		@Override
+		protected String getCacheKey() {
+			return "1"
+		}
+	}
+
 }
 
-class CachedCommand extends HystrixCommand<String> {
-
-	public static final LongAdder counter = new LongAdder()
-
-	protected CachedCommand() {
-		super(HystrixCommandGroupKey.Factory.asKey("Cached"))
-	}
-
-	@Override
-	protected String run() throws Exception {
-		counter.increment()
-		TimeUnit.MILLISECONDS.sleep(500)
-		return null
-	}
-
-	@Override
-	protected String getCacheKey() {
-		return "1"
-	}
-}

@@ -11,10 +11,7 @@ import spock.lang.Specification
 import java.time.Instant
 import java.util.concurrent.Future
 
-import static com.nurkiewicz.hystrix.Examples.ANY_STOCK_PRICE
-import static com.nurkiewicz.hystrix.Examples.ANY_TICKER
-import static com.nurkiewicz.hystrix.Examples.OTHER_STOCK_PRICE
-import static com.nurkiewicz.hystrix.Examples.OTHER_TICKER
+import static com.nurkiewicz.hystrix.H61_Request_batching.Examples.*
 
 /**
  * Stock price example
@@ -74,14 +71,15 @@ class H61_Request_batching extends Specification {
 					OTHER_TICKER, OTHER_STOCK_PRICE)
 	}
 
+	class Examples {
+
+		static final Ticker ANY_TICKER = new Ticker("IBM")
+		static final StockPrice ANY_STOCK_PRICE = new StockPrice(BigDecimal.TEN, Instant.now())
+
+		static final Ticker OTHER_TICKER = new Ticker("MSFT")
+		static final StockPrice OTHER_STOCK_PRICE = new StockPrice(BigDecimal.ONE, Instant.now())
+
+	}
+
 }
 
-class Examples {
-
-	static final Ticker ANY_TICKER = new Ticker("IBM")
-	static final StockPrice ANY_STOCK_PRICE = new StockPrice(BigDecimal.TEN, Instant.now())
-
-	static final Ticker OTHER_TICKER = new Ticker("MSFT")
-	static final StockPrice OTHER_STOCK_PRICE = new StockPrice(BigDecimal.ONE, Instant.now())
-
-}

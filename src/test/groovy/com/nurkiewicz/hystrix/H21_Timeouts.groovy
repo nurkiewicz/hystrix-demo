@@ -18,18 +18,19 @@ class H21_Timeouts extends Specification {
 
 	}
 
-}
+	static class TimeoutDownloadCommand extends HystrixCommand<String> {
 
-class TimeoutDownloadCommand extends HystrixCommand<String> {
+		protected TimeoutDownloadCommand() {
+			super(HystrixCommandGroupKey.Factory.asKey("Download"), 5_000)
+		}
 
-	protected TimeoutDownloadCommand() {
-		super(HystrixCommandGroupKey.Factory.asKey("Download"), 5_000)
+		@Override
+		protected String run() throws Exception {
+			URL url = "http://www.example.com".toURL()
+			InputStream input = url.openStream()
+			IOUtils.toString(input, StandardCharsets.UTF_8)
+		}
 	}
 
-	@Override
-	protected String run() throws Exception {
-		URL url = "http://www.example.com".toURL()
-		InputStream input = url.openStream()
-		IOUtils.toString(input, StandardCharsets.UTF_8)
-	}
 }
+

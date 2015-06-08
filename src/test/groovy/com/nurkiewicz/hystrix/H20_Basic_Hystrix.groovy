@@ -23,18 +23,19 @@ class H20_Basic_Hystrix extends Specification {
 
 	}
 
-}
+	static class BasicDownloadCommand extends HystrixCommand<String> {
 
-class BasicDownloadCommand extends HystrixCommand<String> {
+		protected BasicDownloadCommand() {
+			super(HystrixCommandGroupKey.Factory.asKey("Download"))
+		}
 
-	protected BasicDownloadCommand() {
-		super(HystrixCommandGroupKey.Factory.asKey("Download"))
+		@Override
+		protected String run() throws Exception {
+			URL url = "http://www.example.com".toURL()
+			InputStream input = url.openStream()
+			return IOUtils.toString(input, StandardCharsets.UTF_8)
+		}
 	}
 
-	@Override
-	protected String run() throws Exception {
-		URL url = "http://www.example.com".toURL()
-		InputStream input = url.openStream()
-		return IOUtils.toString(input, StandardCharsets.UTF_8)
-	}
 }
+

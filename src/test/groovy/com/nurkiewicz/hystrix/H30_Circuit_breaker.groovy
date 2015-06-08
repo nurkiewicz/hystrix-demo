@@ -1,14 +1,10 @@
 package com.nurkiewicz.hystrix
 
-import com.netflix.hystrix.HystrixCommand
-import com.netflix.hystrix.HystrixCommandGroupKey
-import com.netflix.hystrix.HystrixCommandKey
-import com.netflix.hystrix.HystrixCommandProperties
-import com.netflix.hystrix.HystrixThreadPoolProperties
+import com.netflix.hystrix.*
 import groovy.util.logging.Slf4j
 import org.apache.commons.io.IOUtils
 import spock.lang.Specification
-import com.netflix.hystrix.HystrixCommand.Setter
+
 import java.nio.charset.StandardCharsets
 
 /**
@@ -29,33 +25,34 @@ class H30_Circuit_breaker extends Specification {
 			String result = command.execute()
 	}
 
-}
+	@Slf4j
+	static class CircuitBreakingDownloadCommand extends HystrixCommand<String> {
 
-@Slf4j
-class CircuitBreakingDownloadCommand extends HystrixCommand<String> {
+		protected CircuitBreakingDownloadCommand() {
+			super(
+					Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("Download"))
+							.andCommandKey(HystrixCommandKey.Factory.asKey("SomeCommand"))
+							.andThreadPoolPropertiesDefaults(
+							HystrixThreadPoolProperties.Setter()
+									.withMetricsRollingStatisticalWindowInMilliseconds(10_000))
+							.andCommandPropertiesDefaults(
+							HystrixCommandProperties.Setter()
+									.withCircuitBreakerEnabled(true)
+									.withCircuitBreakerErrorThresholdPercentage(50)
+									.withCircuitBreakerRequestVolumeThreshold(20)
+									.withCircuitBreakerSleepWindowInMilliseconds(5_000)
+					)
+			)
+		}
 
-	protected CircuitBreakingDownloadCommand() {
-		super(
-				Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("Download"))
-						.andCommandKey(HystrixCommandKey.Factory.asKey("SomeCommand"))
-						.andThreadPoolPropertiesDefaults(
-						HystrixThreadPoolProperties.Setter()
-								.withMetricsRollingStatisticalWindowInMilliseconds(10_000))
-						.andCommandPropertiesDefaults(
-						HystrixCommandProperties.Setter()
-								.withCircuitBreakerEnabled(true)
-								.withCircuitBreakerErrorThresholdPercentage(50)
-								.withCircuitBreakerRequestVolumeThreshold(20)
-								.withCircuitBreakerSleepWindowInMilliseconds(5_000)
-				)
-		)
+		@Override
+		protected String run() throws Exception {
+			log.debug("Downloading...")
+			URL url = "http://www.example.com/404".toURL()
+			InputStream input = url.openStream()
+			return IOUtils.toString(input, StandardCharsets.UTF_8)
+		}
 	}
 
-	@Override
-	protected String run() throws Exception {
-		log.debug("Downloading...")
-		URL url = "http://www.example.com/404".toURL()
-		InputStream input = url.openStream()
-		return IOUtils.toString(input, StandardCharsets.UTF_8)
-	}
 }
+
