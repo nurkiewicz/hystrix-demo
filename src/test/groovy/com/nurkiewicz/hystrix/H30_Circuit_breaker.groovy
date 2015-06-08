@@ -17,7 +17,7 @@ import java.nio.charset.StandardCharsets
  */
 class H30_Circuit_breaker extends Specification {
 
-	def 'Minimal Hystric API'() {
+	def 'Minimal Hystrix API'() {
 		given:
 			CircuitBreakingDownloadCommand command = new CircuitBreakingDownloadCommand()
 
