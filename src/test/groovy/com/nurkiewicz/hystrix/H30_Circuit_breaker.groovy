@@ -1,10 +1,14 @@
 package com.nurkiewicz.hystrix
 
-import com.netflix.hystrix.*
+import com.netflix.hystrix.HystrixCommand
+import com.netflix.hystrix.HystrixCommandGroupKey
+import com.netflix.hystrix.HystrixCommandKey
+import com.netflix.hystrix.HystrixCommandProperties
+import com.netflix.hystrix.HystrixThreadPoolProperties
 import groovy.util.logging.Slf4j
 import org.apache.commons.io.IOUtils
 import spock.lang.Specification
-
+import com.netflix.hystrix.HystrixCommand.Setter
 import java.nio.charset.StandardCharsets
 
 /**
