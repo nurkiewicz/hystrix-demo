@@ -26,7 +26,8 @@ class H23_HystrixGuard {
 		return new HystrixCommand<String>(setter()) {
 			@Override
 			protected String run() throws Exception {
-				unsafe(params)
+				externalService.call(params)
+				return "OK"
 			}
 		}.execute()
 	}

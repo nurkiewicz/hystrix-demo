@@ -8,7 +8,8 @@
 
 ## Tomasz Nurkiewicz
 
-Twitter: [@tnurkiewicz](https://twitter.com/tnurkiewicz), works for: [@4financeit](https://twitter.com/4financeit)
+Twitter:   [@tnurkiewicz](https://twitter.com/tnurkiewicz)
+Works for: [@4financeit](https://twitter.com/4financeit)
 
 E-mail: my last name `@gmail.com`
 
