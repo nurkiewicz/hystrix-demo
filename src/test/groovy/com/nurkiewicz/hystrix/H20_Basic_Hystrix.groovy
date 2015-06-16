@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets
  */
 class H20_Basic_Hystrix extends Specification {
 
-	def 'Minimal Hystric API'() {
+	def 'Minimal Hystrix API'() {
 		given:
 			HystrixCommand<String> command = new BasicDownloadCommand()
 
