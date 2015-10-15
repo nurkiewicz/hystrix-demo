@@ -32,22 +32,22 @@
         <dependency>
             <groupId>com.netflix.hystrix</groupId>
             <artifactId>hystrix-core</artifactId>
-            <version>1.4.7</version>
+            <version>1.4.18</version>
         </dependency>
         <dependency>
             <groupId>com.netflix.hystrix</groupId>
             <artifactId>hystrix-request-servlet</artifactId>
-            <version>1.4.7</version>
+            <version>1.4.18</version>
         </dependency>
         <dependency>
             <groupId>com.netflix.hystrix</groupId>
             <artifactId>hystrix-metrics-event-stream</artifactId>
-            <version>1.4.7</version>
+            <version>1.4.18</version>
         </dependency>
         <dependency>
             <groupId>com.netflix.hystrix</groupId>
             <artifactId>hystrix-codahale-metrics-publisher</artifactId>
-            <version>1.4.7</version>
+            <version>1.4.18</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.codahale.metrics</groupId>
