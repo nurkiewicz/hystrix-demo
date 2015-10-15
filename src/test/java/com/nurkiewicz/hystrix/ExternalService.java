@@ -34,7 +34,7 @@ class ExternalService {
 	private String businessLogic(QueryParams params) {
 		log.debug("Calling with {}", params);
 		sleepRandomly(params);
-		if (Math.random() < params.getFailureProbability()) {
+		if (Math.random() < params.getErrorRate()) {
 			throw new RuntimeException("Simulated, don't panic");
 		}
 		return "OK";
